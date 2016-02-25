@@ -1,0 +1,15 @@
+{
+  "name": "info",
+  "description": "basic",
+  "version": "0.0.3",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^3.21.2",
+    "jade":"*",
+    "nodemon":"*",
+    "mongoose":"*"
+  }
+}

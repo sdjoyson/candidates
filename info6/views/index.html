@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>MAPLEBOT CANDIDATE INFORMATION PAGE</title>
+
+    <!-- Bootstrap -->
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    
+   
+     <link rel="stylesheet" href="main.css" type="text/css">
+     <script src="bootstrap/js/jquery-1.11.1.min.js"></script>
+   
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+                        <!-- for return key submision -->  
+                           <script type="text/javascript"> 
+
+                                function stopRKey(evt) { 
+                                    var evt = (evt) ? evt : ((event) ? event : null); 
+                                    var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+                                    if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+                                 } 
+
+                                 document.onkeypress = stopRKey; 
+
+                            </script>
+                            <!-- end return key -->
+                            <!-- timer -->
+                           <script>
+                                  var sec = 0;
+                                  var min = 0;
+                                  var hour = 0;
+                                  function startwatch() {
+                                     sec++;
+                                    if (sec == 60) {
+                                     sec = 0;
+                                     min = min + 1; }
+                                    else {
+                                     min = min; }
+                                    
+
+                                  if (sec<=9) { sec = "0" + sec; }
+                                     document.clock.stwa.value = ((min<=9) ? "0" + min : min) + " : " + sec;
+
+                                  SD = window.setTimeout("startwatch();", 1000);
+                                  }
+
+                                  function stopwatch() {
+                                    sec = -1;
+                                    min = 0;
+                                    hour = 0;
+                                    window.clearTimeout(SD);
+
+                                   }
+                                  
+                                  </script>
+
+                                  <style>
+                                  .timer{
+                                    
+                                    border-radius:5px solid pink;
+                                    box-shadow: 5px -1px 25px pink;
+                                    color:red;
+                                    font-size: 20px;
+                                    background-color:#A8A8A8 ;
+                                  }
+                                  .time{
+                                    padding:0px 15px ;
+                                  }
+                                    .table-bordered th,
+                                    .table-bordered td {
+                                      border: 1px solid red;
+                                      background-color: green;
+                                   }
+
+                             
+                                </style>
+                            <!-- end Timer -->
+
+  </head>
+  <body style="background-color: #989898 ">
+  <div class="container">
+
+    <div class="row"><div class="col-md-8">
+
+    <form action="/form" class="form-horizontal" method="POST" id="reg_form" name="clock" onsubmit="stopwatch();" > 
+
+      <div class="row">
+        <div class="col-sm-6">
+               <table bgcolor="#c0c0c0" align="center" border="0" width="140" cellspacing="0" class="timer" >
+                <tr>
+                   <td align="center">
+                     <font face="verdana, arial, helvetica, sans-serif" size="2">
+                     <b>TIMER</b></font>
+                   </td>
+                </tr>
+                <tr>
+                   <td align="center" class="time">
+                   
+                     <input type="text" size="12" name="stwa" id="stwa" value="00 : 00 " style="text-align:center" /><br /><br/>
+                    <!--  <input type="button" name="theButton" onClick="stopwatch(this.value);" value="Start" /> -->
+                     <!-- <input type="button" value="START" class="btn btn-danger" onClick="stopwatch();" /> -->
+                     
+                   </td>
+                </tr>     
+              </table>
+      </div>
+      <div class="col-sm-6">
+        <h3 class="text-center text">CANDIDATE INFORMATION</h3>
+
+    </div></div><br /><br />
+
+
+      <div class="form-group">
+        <label for="phone" class="col-sm-2 control-label">PHONE NUMBER</label>
+              <div class="col-sm-6">
+                <input type="tel" class="form-control" id="phone" placeholder="PHONE NUMBER"  pattern="[0-9]{10}" name="phone"  maxlength="10" title="10 characters maximum" onClick="startwatch();" required/>
+              </div>
+      </div>
+      <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">NAME</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="name" placeholder="NAME" name="name1" required/>
+          </div>
+      </div>
+   <div class="form-group">
+      <label for="email" class="col-sm-2 control-label">EMAIL</label>
+          <div class="col-sm-6">
+           <input type="email" class="form-control" id="email" placeholder="EMAIL" name="email" required/>
+        </div>
+    </div>
+   <div id="dynamicInput">
+     <div class="form-group">
+      <label for="qualification" class="col-sm-2 control-label">QUALIFICATION</label>
+      <div class="col-sm-6">
+          <input type="text" class="form-control" id="qualification12" name="qualification[]" list="qul" name="qualification[]" placeholder="QUALIFICATION" required/>
+            <datalist id="qul">
+              <option value="MCA" />
+              <option value="MBA"/>
+              <option value="ME"/>
+              <option vlaue="MPHIL"/>
+          </datalist>
+   
+      </div>
+      <input type="button" id="btnAdd" class="btn btn-success" onClick="addInput('dynamicInput');" value="+">
+       </div>
+    </div>
+    <!-- for add text box -->
+        <script>
+          var counter = 1;
+          var limit = 3;
+          function addInput(divName){
+               if (counter == limit)  {
+                    alert("You have reached the limit of adding " + counter + " inputs");
+               }
+               else {
+                    var newdiv = document.createElement('div');
+                    newdiv.innerHTML = " <div class='form-group'><label for='addquali' class='col-sm-2 control-label'></label><div class='col-sm-6'><input type='text' class='form-control' id='qualification12[counter]'  name='qualification[]' list='basicqul' placeholder='QUALIFICATION'/><datalist id='basicqul'><option value='BCA'><option value='BSC'><option value='BE'><option value='BCOM'></datalist></div></div>";
+                    document.getElementById(divName).appendChild(newdiv);
+                    counter++;
+               }
+          }
+
+      </script> 
+      <!-- End add text box -->
+     <div class="form-group">
+        <label for="skills" class="col-sm-2 control-label">SKILLS</label>
+          <div class="col-sm-6">
+          <input type="text" class="form-control" id="skills" placeholder="SKILLS" name="skills" required/>
+      </div>
+    </div>
+     <div id="dynamicInput1">
+     <div class="form-group">
+        <label for="experience" class="col-sm-2 control-label">EXPERIENCE</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="experience" placeholder="EXPERIENCE" name="experience[]" required/>
+          </div>
+          <input type="button" id="btnAdd" class="btn btn-success" onClick="addInput1('dynamicInput1');" value="+">
+    </div>
+    </div>
+        <script>
+          var counter1 = 1;
+          var limit1 = 3;
+          function addInput1(divName){
+               if (counter1 == limit1)  {
+                    alert("You have reached the limit of adding " + counter1 + " inputs");
+               }
+               else {
+                    var newdiv1 = document.createElement('div');
+                    newdiv1.innerHTML = " <div class='form-group'><label for='addquali' class='col-sm-2 control-label'></label><div class='col-sm-6'><input type='text' class='form-control' id='experience' placeholder='EXPERIENCE' name='experience[]'></div></div>";
+                    document.getElementById(divName).appendChild(newdiv1);
+                    counter1++;
+               }
+          }
+
+      </script> 
+   <div class="form-group">
+      <label for="passout" class="col-sm-2 control-label">YEAR OF PASS OUT</label>
+        <div class="col-sm-6">
+             <input type="number" class="form-control" id="passout"  name="passout" list="year" placeholder="YEAR OF PASSOUT" required//>
+                <datalist id="year">
+                  <option value="2016"/>
+                  <option value="2015"/> <option value="2014"/><option value="2013"/><option value="2012"/>
+                  <option value="2011"/><option value="2010"/><option value="2009"/><option value="2008"/>
+                  <option value="2007"/> <option value="2006"/><option value="2005"/> <option value="2004"/>
+                </datalist>
+      </div>
+  </div>
+     <div class="form-group">
+        <label for="address" class="col-sm-2 control-label">ADDRESS</label>
+          <div class="col-sm-6">
+            <input type="text" class="form-control" id="address" placeholder="ADDRESS" name="address" required/>
+          </div>
+    </div>
+   <div class="form-group">
+      <label for="pincode" class="col-sm-2 control-label">PINCODE</label>
+        <div class="col-sm-6">
+          <input type="tel" class="form-control" id="pincode" placeholder="PINCODE"  name="pincode" maxlength="6" size="6" title="6 characters required"  value="" required/>
+        </div>
+  </div>
+    <div class="form-group">
+      <label for="rlproject" class="col-sm-2 control-label">NUMBER OF REAL TIME PROJECTS</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="rlproject" placeholder="NUMBER OF REAL TIME PROJECT" name="rlproject" required/>
+      </div>
+  </div>
+    <div class="form-group">
+      <label for="acproject" class="col-sm-2 control-label">NUMBER OF ACADEMIC PROJECTS</label>
+       <div class="col-sm-6">
+          <input type="text" class="form-control" id="acproject" placeholder="NUMBER OF ACEDEMIC PROJECT" name="acproject" required/>
+      </div>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-offset-8 col-sm-6 text-center">
+      <input type="submit" class="btn btn-xlarge" name="submit"  >
+    </div>
+  </div>
+
+
+</form></div>
+<!-- form section end -->
+<div class="col-md-4">
+
+     
+  
+
+<!-- counting table -->
+  <table class="table table-bordered" style="margin-top:200px;">
+      <tr><th colspan="2" class="text-center">SUBMITTED DETAILS</th></tr>
+      <tr><th>RESUMES</th><td><div id="rescounter" style="color:white"></div></td></tr>
+      <tr><th>PHONE</th><td><div id="phone1" style="color:pink"></td></tr>
+      <tr><th>NAME</th><td><div id="name2" style="color:white"></td></tr>
+      <tr><th>TIME TAKEN</th><td><div id="timetaken" style="color:yellow"></td></tr>
+    </table>
+  
+  </div></div>
+
+     <script type='text/javascript'>
+
+
+                   // $(document).ready(function(){
+                      
+                            
+                   //         $("#add").on('click',function(){
+                   //           console.log('working');
+
+                   //            // var textboxvalue = $('input[name=phone]').val();
+                   //            // console.log(textboxvalue);
+
+                   //            //     $.ajax({
+                   //            //     type: "POST",
+                   //            //     url: "",
+                   //            //     cache:false,
+                   //            //     data: "txt1=" + textboxvalue,
+                   //            //     datatype : "html",
+                   //            //     success: function(result)
+                   //            //     {   
+                   //            //         //alert(html);
+                   //            //         console.log(textboxvalue);
+                   //            //         $('#rescounter').html(result);
+
+                   //            //     }
+                   //            //    });
+                   //            return false;
+                   //       });
+                   //       });
+                                                    
+                  var resumecount = 0;
+                  $('#reg_form').on('submit',function() {
+                     
+                    // var data ={
+                    //              phone: $('#phone').val(),
+                    //              name1: $('#name').val(),
+                    //              email: $('#email').val(),
+                    //              qualification: $('#qualification').val(),
+                    //              skill: $('#skill').val(),
+                    //              experience: $('#experience').val(),
+                    //              passout: $('#passout').val(),
+                    //              address: $('#address').val(),
+                    //              pincode: $('#pincode').val(),
+                    //              rlproject: $('#rlproject').val(),
+                    //              acproject: $('#acproject').val(),
+                    //              stwa: $('#stwa').val(),
+                                 
+                    //             }
+
+                                
+                      $.ajax({
+                          type: "POST",
+                          url: "/form",
+                          cache: false,
+                          data: $('#reg_form').serialize(),                                  
+                                  
+                           dataType : "json",
+                         
+                                success: function(data) {
+                                  
+                                 $('#phone1').text(data.phone);
+                                 $('#name2').text(data.name1);
+                                 $('#timetaken').text(data.stwa);
+
+                             
+                             }
+
+                             
+                            });
+                              
+                              document.getElementById("reg_form").reset();
+                              // document.getElementById("phone").focus())
+                              // {
+                              //   startwatch();
+                              // }
+                              resumecount++;
+                              document.getElementById("rescounter").innerHTML = resumecount;
+                              return false;
+
+
+                        });
+              
+                            
+
+
+
+                              
+                           
+                        
+              
+                   
+
+    </script>
+
+
+
+</div>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script> -->
+   <!--  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  </body>
+</html>
